@@ -19,14 +19,17 @@ WorldInfo {
 }
 Viewpoint {
   orientation 0.27102750586905033 0.6631961035187552 -0.697649639389244 0.8057370607903003
-  position -0.7151835363525013 0.3719516612794759 0.5307047623099186
+  position -0.5908246859979502 0.29827583119656387 0.42026194164538694
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
+  contactMaterial "floor"
+  floorSize 0.5 0.5
   floorTileSize 0.1 0.1
+  wallHeight 0.04
 }
 Robot {
   translation 0 0 0.0102
@@ -42,7 +45,7 @@ Robot {
         Accelerometer {
           translation 0 0 0.01
         }
-        Solid {
+        DEF Solid_top Solid {
           translation 0 0 0.01
           children [
             DEF Body_up Shape {
@@ -53,7 +56,6 @@ Robot {
               }
             }
           ]
-          name "solid(1)"
           boundingObject USE Body_up
           physics Physics {
             density -1
@@ -74,8 +76,8 @@ Robot {
             }
           ]
           endPoint Solid {
-            translation -0.012 0 -0.005
-            rotation 0 1 0 1.57
+            translation -0.012 3.497498024166738e-59 -0.004999999999999998
+            rotation 2.3376201791340536e-52 1 -1.361723770291307e-51 1.5700000000000003
             children [
               DEF Wheel_right Shape {
                 appearance PBRAppearance {
@@ -90,6 +92,7 @@ Robot {
               }
             ]
             name "solid2"
+            contactMaterial "wheel"
             boundingObject USE Wheel_right
             physics DEF wheel_right_physics Physics {
               density -1
@@ -108,8 +111,8 @@ Robot {
             }
           ]
           endPoint Solid {
-            translation 0.012 0 -0.005
-            rotation -7.853589927914979e-17 1 1.5707179855829958e-16 1.57
+            translation 0.012 4.1763132894517525e-53 -0.004999999999999998
+            rotation -7.853589927914983e-17 1 1.5707179855829965e-16 1.5700000000000003
             children [
               DEF Wheel_left Shape {
                 appearance PBRAppearance {
@@ -123,6 +126,7 @@ Robot {
                 }
               }
             ]
+            contactMaterial "wheel"
             boundingObject USE Wheel_left
             physics DEF wheel_left_physics Physics {
               density -1
@@ -145,4 +149,5 @@ Robot {
   physics Physics {
   }
   controller "<extern>"
+  supervisor TRUE
 }
